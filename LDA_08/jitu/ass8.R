@@ -1,22 +1,24 @@
 ########################################
+########################################
 # MATHDAT WITH MIXTURES
 ########################################
+install.packages("R2jags")
 library(R2jags)
-setwd("C:\\holger\\Uni Tuebingen\\lehre\\WS2023\\Longitudinal\\datasets\\08 gmm\\")
+getwd()
 
 ###############################################################
 # DATA
 ###############################################################
-dat2 <- read.table("C:\\holger\\Uni Tuebingen\\lehre\\WS2023\\Longitudinal\\datasets\\04 mlm3\\bockrrm.DAT", header=F, 
+dat2 <- read.table("/cloud/project/LDA_08/jitu/autism_short.dat", header=T, 
                    na.strings="NA", dec=".",strip.white = T, 
-                   col.names = c("id","dep","intcpt","lin","linch","order","ordlin","ordlinch"))
+                   col.names = c("id","group","y1","y2","y3","y4","y5"))
 
-head(dat1)
+head(dat2)
 
 # restructure data into short format
 N <- length(levels(as.factor(dat2$id))) # no of persons
 dim(dat2)
-
+#Todo from here
 dat1 <- data.frame(matrix(NA,N,7))
 for(i in 1:N){#i<-1
   idat <- dat2[dat2$id==i,]
